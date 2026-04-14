@@ -12,7 +12,7 @@ struct TreeNode {
     int data;
     TreeNode* left;
     TreeNode* right;
-};
+};  
 struct BIN_TREE  
 {
     int nCount;
