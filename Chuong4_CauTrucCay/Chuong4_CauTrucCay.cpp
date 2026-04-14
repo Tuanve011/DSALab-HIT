@@ -18,7 +18,11 @@ struct TreeNode {
     TreeNode *left;
     TreeNode *right;
 };
-
+struct BIN_TREE
+{
+    int nCount;
+    TreeNode* proot;
+};
 // ============================================================
 //  TAO NODE VA KHOI TAO
 // ============================================================
@@ -33,7 +37,38 @@ TreeNode* TaoNode(int x) {
 //  CAY NHI PHAN TIM KIEM (BST)
 //  Tinh chat: left < root < right
 // ============================================================
+// tao cay
+void taocay(BIN_TREE& t, const int a[], int n)
+{
+    int kq;
+    for (int i = 0;i < n;i++)
+    {
+        kq = BSTInsert(t.proot, a[i]);
+            if (kq == 0)
+                cout << "\nKhoa" << a[i] << "da co trong cay.";
+            else
+                t.nCount++;
+    }
+}
+// them 1 phan tu
+int BSTInsert(TreeNode*& pCurr, int newkey)
+{
+    if (pCurr == NULL)
+    {
+        pCurr = new TreeNode;
+        pCurr->data = newkey;
+        pCurr->left = pCurr->right = NULL;
+        return 1;
+    }
+    if (pCurr->data > newkey)
+        return BSTInsert(pCurr->left, newkey);
+    else
+        if (pCurr->data < newkey)
+            return BSTInsert(pCurr->right, newkey);
+        else
+            return 0;
 
+}
 // Chen mot nut vao BST
 TreeNode* Chen(TreeNode *root, int x) {
     if (root == nullptr) return TaoNode(x);
